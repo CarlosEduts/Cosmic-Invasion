@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cosmic Invasion</title>
+    <link rel="stylesheet" href="./Styles/style.css" />
+    <link
+      rel="shortcut icon"
+      href="./Game/Player/Player_ship-front.png"
+      type="image/x-icon"
+    />
+
+    <!-- Bibliotecas externas -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+  </head>
+  <body>
+    <div class="home-container">
+      <img src="./Game/UI/START (48 x 8)-1.png.png" alt="" class="title" />
+      <div class="home-content">
+        <p class="title-2">Cosmic Invasion</p>
+        <p class="subtitle">
+          Use seu celular para ler o QR code e transformá-lo em um controle para
+          começar o jogo! Derrote os alienígenas para aumentar seu tempo de
+          vida. Aproveite e divirta-se!
+        </p>
+        <div class="qrcode"></div>
+      </div>
+    </div>
+
+    <div class="game-over-container">
+      <img src="./Game/UI/GAME_OVER (72 x 8)-1.png.png" alt="" class="title" />
+      <div class="home-content">
+        <p class="title-2 over-time">Cosmic Invasion</p>
+        <p class="subtitle">
+          Um novo jogo vai começar em 5 segundos, prepare-se!
+        </p>
+        <div class="qrcode"></div>
+      </div>
+    </div>
+
+    <div class="game-container" style="display: none">
+      <div class="nav">
+        <p class="nav-time"></p>
+        <p class="nav-points"></p>
+      </div>
+
+      <div class="enemies">
+        <div class="enemy"></div>
+        <div class="enemy"></div>
+        <div class="enemy"></div>
+        <div class="enemy"></div>
+        <div class="enemy"></div>
+      </div>
+
+      <div class="beam"></div>
+
+      <div class="player">
+        <div class="player-spaceship"></div>
+        <div class="player-boosters"></div>
+      </div>
+    </div>
+
+    <script src="./Scripts/script.js"></script>
+  </body>
+</html>
