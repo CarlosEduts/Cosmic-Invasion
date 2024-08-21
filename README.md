@@ -13,7 +13,7 @@
 ### Rodando Localmente
 1. Clone o repositório:
    ```bash
-   git clone https://github.com/
+   git clone https://github.com/CarlosEduts/Cosmic-Invasion
    cd cosmic-invasion
    ```
 
@@ -35,7 +35,7 @@
 5. Na tela de "start", escaneie o QR code com o seu celular. O jogo começará e você poderá usar o celular como controlador.
 
 ### Testando Online
-Você pode testar o projeto diretamente no seguinte link: [cosmicInvasion.vercel](https://cosmicInvasion.vercel)
+Você pode testar o projeto diretamente no seguinte link: [cosmicinvasion.onrender.com](https://cosmicinvasion.onrender.com/)
 
 ## Contribuindo
 Contribuições são sempre bem-vindas! Se você encontrar problemas, por favor, abra uma issue ou envie um pull request.

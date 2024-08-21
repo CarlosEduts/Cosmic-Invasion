@@ -193,7 +193,7 @@ socket.on("receiveAction", (data) => {
 });
 
 // Cria um elemento de imagem e define o src com a URL do QR code
-const url = `https://3000-carloseduts-nebularaide-r1nvszj7utd.ws-us115.gitpod.io/control.html?id=${player.id}`;
+const url = `https://cosmicinvasion.onrender.com/control.html?id=${player.id}`;
 QRCode.toDataURL(url, (err, url) => {
   if (err) throw err;
   const img = document.createElement("img");
