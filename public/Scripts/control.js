@@ -1,5 +1,5 @@
 const currentURL = window.location.href;
-const playerID = currentURL.substring(currentURL.indexOf("game") + 85);
+const playerID = currentURL.substring(currentURL.indexOf("id=") + 3);
 var socket = io();
 
 const buttons = {

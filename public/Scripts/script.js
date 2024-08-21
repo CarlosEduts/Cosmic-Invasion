@@ -164,10 +164,8 @@ function start() {
 // Identifica a ação feita pelo jogador
 let intervalId;
 function buttonAction(action, move) {
-  console.log(action);
   // Se o contole foi conetado
   if (action == "Connect") {
-    console.log("Controle conectado.");
     start();
   } else if (action == "Beam") {
     playerShoots();
@@ -182,7 +180,6 @@ function buttonAction(action, move) {
 
 // Registrar o usuário com um ID específico
 socket.on("connect", () => {
-  console.log(player.id, socket.id);
   socket.emit("register", player.id);
 });
 
