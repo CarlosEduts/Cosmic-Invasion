@@ -32,6 +32,17 @@ function clickSound() {
     });
 }
 
+// Função do som do Laser
+function laserSound() {
+  sound.laser
+    .play()
+    .then(() => {})
+    .catch((error) => {
+      sound.laser.load();
+      sound.laser.play();
+    });
+}
+
 // Movimentar o jogador para a Esquerda
 buttons.left.addEventListener("touchstart", () => {
   let action = ["Left", true];
@@ -56,18 +67,6 @@ buttons.right.addEventListener("touchend", () => {
   socket.emit("sendAction", { playerID, action });
 });
 
-// Função do som do Laser
-function laserSound() {
-  sound.laser
-    .play()
-    .then(() => {})
-    .catch((error) => {
-      // Tente carregar novamente o áudio em caso de falha
-      sound.laser.load();
-      sound.laser.play();
-    });
-}
-
 // Botão de atirar laser
 buttons.beam.addEventListener("touchstart", () => {
   let action = ["Beam", true];
@@ -75,7 +74,7 @@ buttons.beam.addEventListener("touchstart", () => {
   laserSound();
 });
 
-// Evento de tela cheia
+// Evento de tela cheia e rotação de tela
 buttons.screen.addEventListener("click", function () {
   if (document.documentElement.requestFullscreen) {
     document.documentElement.requestFullscreen();
@@ -85,6 +84,18 @@ buttons.screen.addEventListener("click", function () {
     document.documentElement.webkitRequestFullscreen();
   } else if (document.documentElement.msRequestFullscreen) {
     document.documentElement.msRequestFullscreen();
+  }
+  // Verifica se a API de Orientação está disponível
+  if (screen.orientation) {
+    // Altera a orientação para "landscape"
+    screen.orientation
+      .lock("landscape")
+      .then(() => {})
+      .catch((error) => {
+        console.error("Erro ao mudar a orientação:", error);
+      });
+  } else {
+    console.log("A API de Orientação não é suportada neste dispositivo.");
   }
   clickSound();
 });

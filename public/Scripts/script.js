@@ -29,7 +29,7 @@ const player = {
   beam: { y: 5, x: 0 },
   points: 0,
   speed: 16,
-  time: 9,
+  time: 18,
   x: 40,
 };
 
@@ -40,7 +40,7 @@ function randomNum(value) {
 
 // Temporizador do jogo (Conta tempo de vida do Jogador, se menor que ZERO: Fim de jogo)
 function timer() {
-  player.time = 9;
+  player.time = 18;
 
   let Interval = setInterval(() => {
     player.time -= 1;
@@ -190,7 +190,8 @@ socket.on("receiveAction", (data) => {
 });
 
 // Cria um elemento de imagem e define o src com a URL do QR code
-const url = `https://cosmicinvasion.onrender.com/control.html?id=${player.id}`;
+const currentURL = window.location.href;
+const url = `${currentURL}/control.html?id=${player.id}`;
 QRCode.toDataURL(url, (err, url) => {
   if (err) throw err;
   const img = document.createElement("img");
