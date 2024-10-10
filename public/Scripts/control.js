@@ -3,7 +3,7 @@ const playerID = currentURL.substring(currentURL.indexOf("id=") + 3);
 var socket = io();
 
 const buttons = {
-  screen: document.querySelector(".screen-control"),
+  start: document.querySelector(".screen-control"),
   left: document.querySelector(".left-control"),
   right: document.querySelector(".right-control"),
   beam: document.querySelector(".beam-control"),
@@ -14,11 +14,39 @@ const sound = {
   laser: new Audio("../Game/Audio/laserSmall_001.ogg"),
 };
 
-// Conectar ao Servidor
-socket.on("connect", () => {
+  // Conectar ao Servidor
+  socket.on("connect", () => {
+  });
+
+// Função de iniciar jogo
+function startGame() {
   let action = ["Connect", true];
   socket.emit("sendAction", { playerID, action });
-});
+
+  // Evento de tela cheia
+  if (document.documentElement.requestFullscreen) {
+    document.documentElement.requestFullscreen();
+  } else if (document.documentElement.mozRequestFullScreen) {
+    document.documentElement.mozRequestFullScreen();
+  } else if (document.documentElement.webkitRequestFullscreen) {
+    document.documentElement.webkitRequestFullscreen();
+  } else if (document.documentElement.msRequestFullscreen) {
+    document.documentElement.msRequestFullscreen();
+  }
+
+  // Verifica se a API de Orientação está disponível
+  if (screen.orientation) {
+    // Altera a orientação para "landscape"
+    screen.orientation
+      .lock("landscape")
+      .then(() => {})
+      .catch((error) => {
+        console.error("Erro ao mudar a orientação:", error);
+      });
+  } else {
+    console.log("A API de Orientação não é suportada neste dispositivo.");
+  }
+}
 
 // Função do som de Clique
 function clickSound() {
@@ -74,28 +102,9 @@ buttons.beam.addEventListener("touchstart", () => {
   laserSound();
 });
 
-// Evento de tela cheia e rotação de tela
-buttons.screen.addEventListener("click", function () {
-  if (document.documentElement.requestFullscreen) {
-    document.documentElement.requestFullscreen();
-  } else if (document.documentElement.mozRequestFullScreen) {
-    document.documentElement.mozRequestFullScreen();
-  } else if (document.documentElement.webkitRequestFullscreen) {
-    document.documentElement.webkitRequestFullscreen();
-  } else if (document.documentElement.msRequestFullscreen) {
-    document.documentElement.msRequestFullscreen();
-  }
-  // Verifica se a API de Orientação está disponível
-  if (screen.orientation) {
-    // Altera a orientação para "landscape"
-    screen.orientation
-      .lock("landscape")
-      .then(() => {})
-      .catch((error) => {
-        console.error("Erro ao mudar a orientação:", error);
-      });
-  } else {
-    console.log("A API de Orientação não é suportada neste dispositivo.");
-  }
+// Botão de iniciar Jogo
+buttons.start.addEventListener("click", function () {
+  buttons.start.style.display = "none";
+  startGame();
   clickSound();
 });
